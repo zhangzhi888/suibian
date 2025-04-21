@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+
+       .resume-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        caption {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e0e0e0;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+       .photo-cell {
+            text-align: center;
+        }
+
+       .photo {
+            width: 120px;
+            height: 160px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+
+       .section-title {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+       .icon {
+            margin-right: 8px;
+            color: #e74c3c;
+        }
+
+       .self-evaluation {
+            line-height: 1.6;
+        }
+
+       .buttons {
+            text-align: center;
+        }
+
+       .buttons button {
+            padding: 8px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+       .buttons button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+       .buttons button[type="reset"] {
+            background-color: #f44336;
+            color: white;
+        }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            height: 150px;
+            resize: vertical;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="email"],
+        select {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume-container">
+        <form id="resumeForm">
+            <table border="1">
+                <caption>个人简历</caption>
+                <!-- 基本信息 -->
+                <tr>
+                    <th>姓名</th>
+                    <td><input type="text" name="name" maxlength="20"></td>
+                    <th>性别</th>
+                    <td>
+                        <select name="gender">
+                            <option value="">请选择</option>
+                            <option value="male">男</option>
+                            <option value="female">女</option>
+                        </select>
+                    </td>
+                    <th>年龄</th>
+                    <td><input type="number" name="age" min="18" max="60"></td>
+                    <th rowspan="3">照片</th>
+                    <td rowspan="3">
+                        <input type="file" name="photo" accept="image/*" id="photoInput">
+                        <div id="photoPreviewContainer" class="photo-cell" style="display: none;">
+                            <img id="photoPreview" class="photo" src="#" alt="照片预览">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>籍贯</th>
+                    <td><input type="text" name="hometown" maxlength="50"></td>
+                    <th>联系电话</th>
+                    <td><input type="tel" name="phone" pattern="[0-9]{11}"></td>
+                    <th>电子邮箱</th>
+                    <td><input type="email" name="email" maxlength="50"></td>
+                </tr>
+                <tr>
+                    <th>学历</th>
+                    <td>
+                        <select name="education">
+                            <option value="">请选择</option>
+                            <option value="high-school">高中</option>
+                            <option value="college">大专</option>
+                            <option value="bachelor">本科</option>
+                            <option value="master">硕士</option>
+                        </select>
+                    </td>
+                    <th>健康状况</th>
+                    <td>
+                        <select name="health">
+                            <option value="">请选择</option>
+                            <option value="excellent">优秀</option>
+                            <option value="good">良好</option>
+                            <option value="fair">一般</option>
+                        </select>
+                    </td>
+                    <th>婚姻状况</th>
+                    <td>
+                        <select name="marital_status">
+                            <option value="">请选择</option>
+                            <option value="single">未婚</option>
+                            <option value="married">已婚</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>求职意向</th>
+                    <td>
+                        <select name="job_intention">
+                            <option value="">请选择</option>
+                            <option value="developer">前端开发</option>
+                            <option value="designer">软件设计</option>
+                            <option value="manager">管理岗位</option>
+							<option value="manager">软件维护</option>
+                        </select>
+                    </td>
+                    <th>专业</th>
+                    <td colspan="2">
+                        <select name="major">
+                            <option value="">请选择</option>
+                            <option value="computer">软件工程</option>
+                            <option value="business">人工智能</option>
+                            <option value="finance">计算机科学与技术</option>
+                        </select>
+                    </td>
+                    <th>毕业院校</th>
+                    <td colspan="2">
+                        <select name="school">
+                            <option value="">请选择</option>
+                            <option value="tsinghua">烟台大学</option>
+                            <option value="pku">鲁东大学</option>
+                            <option value="fudan">青岛大学</option>
+                        </select>
+                    </td>
+                </tr>
+                <!-- 技能证书 -->
+                <tr>
+                    <th>技能证书</th>
+                    <td colspan="10">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cert1" name="certificates" value="english">
+                                <label for="cert1">英语四级</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cert2" name="certificates" value="computer">
+                                <label for="cert2">计算机二级</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="cert3" name="certificates" value="driver">
+                                <label for="cert3">驾驶证</label>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- 个人特长与爱好 -->
+                <tr>
+                    <th>个人特长与爱好</th>
+                    <td colspan="10">
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hobby1" name="hobbies" value="sports">
+                                <label for="hobby1">唱歌</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hobby2" name="hobbies" value="music">
+                                <label for="hobby2">跳舞</label>
+                            </div>
+							<div class="checkbox-item">
+							    <input type="checkbox" id="hobby3" name="hobbies" value="reading">
+							    <label for="hobby3">rap</label>
+							</div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hobby3" name="hobbies" value="reading">
+                                <label for="hobby3">篮球</label>
+                            </div>
+                            
+                        </div>
+                    </td>
+                </tr>
+                <!-- 项目经历 -->
+                <tr>
+                    <th>项目经历</th>
+                    <td colspan="10"><textarea name="project_experience" maxlength="500"></textarea></td>
+                </tr>
+                <!-- 自我评价 -->
+                <tr>
+                    <th>自我评价</th>
+                    <td colspan="10"><textarea name="self_evaluation" maxlength="500"></textarea></td>
+                </tr>
+            </table>
+            <div class="buttons">
+                <button type="submit" form="resumeForm">提交</button>
+                <button type="reset" form="resumeForm">重置</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const photoInput = document.getElementById('photoInput');
+        const photoPreviewContainer = document.getElementById('photoPreviewContainer');
+        const photoPreview = document.getElementById('photoPreview');
+        const resumeForm = document.getElementById('resumeForm');
+
+        photoInput.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    photoPreview.src = e.target.result;
+                    photoPreviewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                photoPreviewContainer.style.display = 'none';
+            }
+        });
+
+        resumeForm.addEventListener('reset', function () {
+            photoPreview.src = '#';
+            photoPreviewContainer.style.display = 'none';
+        });
+
+        resumeForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const formDataObj = {};
+            formData.forEach((value, key) => {
+                if (formDataObj[key]) {
+                    if (!Array.isArray(formDataObj[key])) {
+                        formDataObj[key] = [formDataObj[key]];
+                    }
+                    formDataObj[key].push(value);
+                } else {
+                    formDataObj[key] = value;
+                }
+            });
+            // 将表单数据以 JSON 格式保存到本地存储
+            localStorage.setItem('resumeFormData', JSON.stringify(formDataObj));
+            alert('表单数据已保存！');
+        });
+    </script>
+</body>
+
+</html>    
