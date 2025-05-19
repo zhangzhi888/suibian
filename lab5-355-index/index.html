@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- 引入图标库，这里用了最新版本 -->
+</head>
+
+<body>
+    <div class="resume-container">
+        <form id="resumeForm">
+            <!-- 基本信息 -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-user icon"></i>基本信息</h2>
+                <div class="info-item">
+                    <label for="name">姓名</label>
+                    <input type="text" name="name" maxlength="20">
+                </div>
+                <div class="info-item">
+                    <label for="gender">性别</label>
+                    <select name="gender">
+                        <option value="">请选择</option>
+                        <option value="male">男</option>
+                        <option value="female">女</option>
+                    </select>
+                </div>
+                <div class="info-item">
+                    <label for="age">年龄</label>
+                    <input type="number" name="age" min="18" max="60">
+                </div>
+                <div class="info-item photo-item">
+                    <label for="photo">照片</label>
+                    <input type="file" name="photo" accept="image/*" id="photoInput">
+                    <div id="photoPreviewContainer" class="photo-preview" style="display: none;">
+                        <img id="photoPreview" class="photo" src="#" alt="照片预览">
+                    </div>
+                </div>
+                <div class="info-item">
+                    <label for="hometown">籍贯</label>
+                    <input type="text" name="hometown" maxlength="50">
+                </div>
+                <div class="info-item">
+                    <label for="phone">联系电话</label>
+                    <input type="tel" name="phone" pattern="[0-9]{11}">
+                </div>
+                <div class="info-item">
+                    <label for="email">电子邮箱</label>
+                    <input type="email" name="email" maxlength="50">
+                </div>
+                <div class="info-item">
+                    <label for="education">学历</label>
+                    <select name="education">
+                        <option value="">请选择</option>
+                        <option value="high-school">高中</option>
+                        <option value="college">大专</option>
+                        <option value="bachelor">本科</option>
+                        <option value="master">硕士</option>
+                    </select>
+                </div>
+                <div class="info-item">
+                    <label for="health">健康状况</label>
+                    <select name="health">
+                        <option value="">请选择</option>
+                        <option value="excellent">优秀</option>
+                        <option value="good">良好</option>
+                        <option value="fair">一般</option>
+                    </select>
+                </div>
+                <div class="info-item">
+                    <label for="marital_status">婚姻状况</label>
+                    <select name="marital_status">
+                        <option value="">请选择</option>
+                        <option value="single">未婚</option>
+                        <option value="married">已婚</option>
+                    </select>
+                </div>
+            </div>
+            <!-- 求职意向等 -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-briefcase icon"></i>求职意向</h2>
+                <div class="info-item">
+                    <label for="job_intention">求职意向</label>
+                    <select name="job_intention">
+                        <option value="">请选择</option>
+                        <option value="developer">开发工程师</option>
+                        <option value="designer">设计师</option>
+                        <option value="manager">管理岗位</option>
+                    </select>
+                </div>
+                <div class="info-item">
+                    <label for="major">专业</label>
+                    <select name="major">
+                        <option value="">请选择</option>
+                        <option value="computer">软件工程</option>
+                        <option value="business">人工智能</option>
+                        <option value="finance">计算机科学与技术</option>
+                    </select>
+                </div>
+                <div class="info-item">
+                    <label for="school">毕业院校</label>
+                    <select name="school">
+                        <option value="">请选择</option>
+                        <option value="tsinghua">烟台大学</option>
+                        <option value="pku">鲁东大学</option>
+                        <option value="fudan">青岛大学</option>
+                    </select>
+                </div>
+            </div>
+            <!-- 技能证书 -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-certificate icon"></i>技能证书</h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cert1" name="certificates" value="english">
+                        <label for="cert1">英语四级</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cert2" name="certificates" value="computer">
+                        <label for="cert2">计算机二级</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="cert3" name="certificates" value="driver">
+                        <label for="cert3">驾驶证</label>
+                    </div>
+                </div>
+            </div>
+            <!-- 个人特长与爱好 -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-heart icon"></i>个人特长与爱好</h2>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="hobby1" name="hobbies" value="sports">
+                        <label for="hobby1">体育运动</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="hobby2" name="hobbies" value="music">
+                        <label for="hobby2">音乐</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="hobby3" name="hobbies" value="reading">
+                        <label for="hobby3">阅读</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="hobby4" name="hobbies" value="travel">
+                        <label for="hobby4">旅游</label>
+                    </div>
+                </div>
+            </div>
+            <!-- 项目经历 -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-briefcase-medical icon"></i>项目经历</h2>
+                <div class="info-item">
+                    <textarea name="project_experience" maxlength="500"></textarea>
+                </div>
+            </div>
+            <!-- 自我评价 -->
+            <div class="section">
+                <h2 class="section-title"><i class="fas fa-user-check icon"></i>自我评价</h2>
+                <div class="info-item">
+                    <textarea name="self_evaluation" maxlength="500"></textarea>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="submit" form="resumeForm">提交</button>
+                <button type="reset" form="resumeForm">重置</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
