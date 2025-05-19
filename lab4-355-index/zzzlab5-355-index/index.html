@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 按钮的动画效果 */
+       .animate-scale {
+            transition: transform 0.3s ease;
+        }
+
+       .animate-scale:hover {
+            transform: scale(1.05);
+        }
+
+        /* 图标和标题的动画效果 */
+       .animate-icon-title {
+            transition: all 0.3s ease;
+        }
+
+       .animate-icon-title:hover {
+            transform: translate(5px, 5px) rotate(5deg);
+        }
+
+        /* 简历预览卡片样式 */
+       .resume-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            background-color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+    <div class="resume-container mx-auto bg-white p-8 shadow-md max-w-4xl mt-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 animate-icon-title">个人简历</h1>
+            <button id="previewBtn" class="animate-scale bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                <i class="fas fa-eye mr-2"></i>预览简历
+            </button>
+        </div>
+        
+        <form id="resumeForm" class="space-y-6">
+            <!-- 基本信息 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="flex flex-col">
+                    <label for="name" class="text-sm font-medium text-gray-700">姓名</label>
+                    <input type="text" id="name" name="name" maxlength="20"
+                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="张智">
+                </div>
+                <div class="flex flex-col">
+                    <label for="gender" class="text-sm font-medium text-gray-700">性别</label>
+                    <select id="gender" name="gender"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">请选择</option>
+                        <option value="male" selected>男</option>
+                        <option value="female">女</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="age" class="text-sm font-medium text-gray-700">年龄</label>
+                    <input type="number" id="age" name="age" min="18" max="60"
+                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="19">
+                </div>
+                <div class="flex flex-col">
+                    <label for="hometown" class="text-sm font-medium text-gray-700">籍贯</label>
+                    <input type="text" id="hometown" name="hometown" maxlength="50"
+                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="山东">
+                </div>
+                <div class="flex flex-col">
+                    <label for="phone" class="text-sm font-medium text-gray-700">联系电话</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{11}"
+                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="18853533982">
+                </div>
+                <div class="flex flex-col">
+                    <label for="email" class="text-sm font-medium text-gray-700">电子邮箱</label>
+                    <input type="email" id="email" name="email" maxlength="50"
+                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" value="1415641324@qq.com">
+                </div>
+                <div class="flex flex-col">
+                    <label for="education" class="text-sm font-medium text-gray-700">学历</label>
+                    <select id="education" name="education"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">请选择</option>
+                        <option value="high-school">高中</option>
+                        <option value="college">大专</option>
+                        <option value="bachelor" selected>本科</option>
+                        <option value="master">硕士</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="health" class="text-sm font-medium text-gray-700">健康状况</label>
+                    <select id="health" name="health"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">请选择</option>
+                        <option value="excellent">优秀</option>
+                        <option value="good" selected>良好</option>
+                        <option value="fair">一般</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="marital_status" class="text-sm font-medium text-gray-700">婚姻状况</label>
+                    <select id="marital_status" name="marital_status"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">请选择</option>
+                        <option value="single" selected>未婚</option>
+                        <option value="married">已婚</option>
+                    </select>
+                </div>
+                <div class="flex flex-col col-span-2">
+                    <label for="job_intention" class="text-sm font-medium text-gray-700">求职意向</label>
+                    <select id="job_intention" name="job_intention"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">请选择</option>
+                        <option value="developer" selected>前端开发</option>
+                        <option value="designer">软件设计</option>
+                        <option value="manager">管理岗位</option>
+                        <option value="maintenance">软件维护</option>
+                    </select>
+                </div>
+                <div class="flex flex-col col-span-2">
+                    <label for="major" class="text-sm font-medium text-gray-700">专业</label>
+                    <select id="major" name="major"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">请选择</option>
+                        <option value="computer" selected>软件工程</option>
+                        <option value="business">人工智能</option>
+                        <option value="finance">计算机科学与技术</option>
+                    </select>
+                </div>
+                <div class="flex flex-col col-span-2">
+                    <label for="school" class="text-sm font-medium text-gray-700">毕业院校</label>
+                    <select id="school" name="school"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        <option value="">请选择</option>
+                        <option value="tsinghua">烟台大学</option>
+                        <option value="pku" selected>鲁东大学</option>
+                        <option value="fudan">青岛大学</option>
+                    </select>
+                </div>
+                <div class="flex flex-col col-span-3">
+                    <label for="photo" class="text-sm font-medium text-gray-700">照片</label>
+                    <input type="file" id="photo" name="photo" accept="image/*"
+                        class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <div id="photoPreviewContainer" class="mt-2 hidden">
+                        <img id="photoPreview" class="w-32 h-40 object-cover border border-gray-300 rounded-md"
+                            src="#" alt="照片预览">
+                    </div>
+                </div>
+            </div>
+            <!-- 技能证书 -->
+            <div class="space-y-2">
+                <h2 class="text-lg font-medium text-gray-800 animate-icon-title">技能证书</h2>
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-certificate animate-icon-title"></i>
+                        <input type="checkbox" id="cert1" name="certificates" value="english"
+                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <label for="cert1" class="ml-2 block text-sm text-gray-700">英语四级</label>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-laptop-code animate-icon-title"></i>
+                        <input type="checkbox" id="cert2" name="certificates" value="computer" checked
+                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <label for="cert2" class="ml-2 block text-sm text-gray-700">计算机二级</label>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-car animate-icon-title"></i>
+                        <input type="checkbox" id="cert3" name="certificates" value="driver" checked
+                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <label for="cert3" class="ml-2 block text-sm text-gray-700">驾驶证</label>
+                    </div>
+                </div>
+            </div>
+            <!-- 个人特长与爱好 -->
+            <div class="space-y-2">
+                <h2 class="text-lg font-medium text-gray-800 animate-icon-title">个人特长与爱好</h2>
+                <div class="flex flex-wrap gap-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-music animate-icon-title"></i>
+                        <input type="checkbox" id="hobby1" name="hobbies" value="sports" checked
+                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <label for="hobby1" class="ml-2 block text-sm text-gray-700">唱歌</label>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-dance-ball animate-icon-title"></i>
+                        <input type="checkbox" id="hobby2" name="hobbies" value="music" checked
+                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <label for="hobby2" class="ml-2 block text-sm text-gray-700">跳舞</label>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-microphone animate-icon-title"></i>
+                        <input type="checkbox" id="hobby3" name="hobbies" value="rap" checked
+                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <label for="hobby3" class="ml-2 block text-sm text-gray-700">rap</label>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-basketball animate-icon-title"></i>
+                        <input type="checkbox" id="hobby4" name="hobbies" value="basketball" checked
+                            class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <label for="hobby4" class="ml-2 block text-sm text-gray-700">篮球</label>
+                    </div>
+                </div>
+            </div>
+            <!-- 项目经历 -->
+            <div class="space-y-2">
+                <h2 class="text-lg font-medium text-gray-800 animate-icon-title">项目经历</h2>
+                <textarea name="project_experience" maxlength="500"
+                    class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-32">医疗预约挂号小程序（微信小程序 + Node.js + MongoDB）
+项目周期：2023.07 - 2023.10
+项目职责：
+前端使用 微信小程序 + Taro 框架，实现跨平台兼容（iOS/Android）。
+后端采用 Node.js + Express，数据库使用 MongoDB 存储非结构化数据（如患者病历）。</textarea>
+            </div>
+            <!-- 自我评价 -->
+            <div class="space-y-2">
+                <h2 class="text-lg font-medium text-gray-800 animate-icon-title">自我评价</h2>
+                <textarea name="self_evaluation" maxlength="500"
+                    class="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-32">熟练掌握 HTML5/CSS3/JavaScript 及主流前端框架（Vue/React），有良好的代码规范和团队协作能力。对用户体验和性能优化有一定研究，能独立完成前端开发任务。</textarea>
+            </div>
+            <div class="flex justify-center space-x-4">
+                <button type="button" id="saveBtn"
+                    class="animate-scale bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    <i class="fas fa-save mr-2"></i>保存
+                </button>
+                <button type="reset" form="resumeForm"
+                    class="animate-scale bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
+                    <i class="fas fa-refresh mr-2"></i>重置
+                </button>
+            </div>
+        </form>
+        
+        <!-- 简历预览区域 -->
+        <div id="resumePreview" class="mt-8 hidden">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">简历预览</h2>
+            <div id="resumeContent" class
