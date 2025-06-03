@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机点名系统</title>
+    <style>
+        /* 页面基础样式 */
+        body {
+            font-family: "微软雅黑", sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 容器样式 */
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 标题样式 */
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* 结果显示区域 */
+        .result {
+            font-size: 36px;
+            color: #ff5722;
+            margin-bottom: 40px;
+            min-height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        /* 按钮组样式 */
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        /* 按钮通用样式 */
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 开始按钮 */
+        #startBtn {
+            background-color: #4caf50;
+            color: #fff;
+        }
+
+        #startBtn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        #startBtn:active {
+            transform: translateY(0);
+        }
+
+        /* 停止按钮 */
+        #stopBtn {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        #stopBtn:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        #stopBtn:active {
+            transform: translateY(0);
+        }
+
+        /* 动画效果 */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 0.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>班级随机点名系统</h1>
+        <div class="result" id="result">等待点名...</div>
+        <div class="buttons">
+            <button id="startBtn">开始点名</button>
+            <button id="stopBtn">停止点名</button>
+        </div>
+    </div>
+
+    <script>
+        // 学生名单（C列数据）
+        const students = [
+            "卜家豪", "陈亚欣", "丁晓萱", "董恩浩", "段鹏松", 
+            "房茜卓", "高俊腾", "高鹿桐", "谷天乐", "何沛洋", 
+            "贾旭", "靳思同", "李凤豪", "李嘉兴", "李建宇", 
+            "李万琪", "李欣宇", "李业勤", "刘百刚", "刘冰倩", 
+            "刘峻泽", "刘一翔", "刘宇倩", "刘志龙", "毛诚一", 
+            "邵尚薇", "孙健玮", "王宪斌", "王政皓", "王志甲", 
+            "王子林", "吴梦瑶", "邢嘉旺", "徐佳慧", "许珈玮", 
+            "张连祥", "张淑恒", "张韵", "张照毅", "张智", 
+            "张璐璐", "赵含蕊", "赵正阳", "赵珈艺", "祝祥和"
+        ];
+
+        // DOM 元素获取
+        const result = document.getElementById("result");
+        const startBtn = document.getElementById("startBtn");
+        const stopBtn = document.getElementById("stopBtn");
+
+        let intervalId = null; // 定时器ID
+        let isRolling = false; // 滚动状态
+
+        // 开始点名逻辑
+        startBtn.addEventListener("click", () => {
+            if (isRolling) return; // 防止重复点击
+            
+            isRolling = true;
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+            result.classList.add("pulse-animation");
+            
+            // 启动定时器，100毫秒更新一次
+            intervalId = setInterval(() => {
+                const randomIndex = Math.floor(Math.random() * students.length);
+                result.textContent = students[randomIndex];
+            }, 100);
+        });
+
+        // 停止点名逻辑
+        stopBtn.addEventListener("click", () => {
+            if (!isRolling) return;
+            
+            clearInterval(intervalId);
+            isRolling = false;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+            result.classList.remove("pulse-animation");
+            
+            // 选中效果
+            result.style.color = "#2196f3";
+            setTimeout(() => {
+                result.style.color = "#ff5722";
+            }, 500);
+        });
+
+        // 初始化按钮状态
+        stopBtn.disabled = true;
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>七彩霓虹灯</title>
+    <style>
+        .neon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .neon-light {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            transition: background-color 0.5s, box-shadow 0.5s;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button id="pauseBtn">暂停</button>
+        <button id="resumeBtn">继续</button>
+    </div>
+
+    <div class="neon-container">
+        <div class="neon-light" id="light1"></div>
+        <div class="neon-light" id="light2"></div>
+        <div class="neon-light" id="light3"></div>
+        <div class="neon-light" id="light4"></div>
+        <div class="neon-light" id="light5"></div>
+        <div class="neon-light" id="light6"></div>
+        <div class="neon-light" id="light7"></div>
+    </div>
+
+    <script>
+        const lights = document.querySelectorAll('.neon-light');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resumeBtn = document.getElementById('resumeBtn');
+        
+        const colors = [
+            'red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple'
+        ];
+        
+        let intervalId;
+        let currentStep = 0;
+        let isPaused = false;
+        
+        // 更新所有灯的颜色
+        function updateLights() {
+            lights.forEach((light, index) => {
+                const colorIndex = (currentStep + index) % colors.length;
+                light.style.backgroundColor = colors[colorIndex];
+                // 添加光晕效果
+                light.style.boxShadow = `0 0 10px ${colors[colorIndex]}, 0 0 20px ${colors[colorIndex]}`;
+            });
+            currentStep = (currentStep + 1) % colors.length;
+        }
+        
+        // 初始化：页面加载时立即显示颜色并开始流动
+        updateLights();
+        intervalId = setInterval(updateLights, 500);
+        
+        // 暂停流动
+        pauseBtn.addEventListener('click', () => {
+            if (!isPaused) {
+                clearInterval(intervalId);
+                isPaused = true;
+            }
+        });
+        
+        // 继续流动
+        resumeBtn.addEventListener('click', () => {
+            if (isPaused) {
+                intervalId = setInterval(updateLights, 500);
+                isPaused = false;
+            }
+        });
+    </script>
+</body>
+</html>
